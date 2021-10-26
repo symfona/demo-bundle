@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Symfona\\DemoBundle\\": "src"
+            "Symfona\\Bundle\\DemoBundle\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Symfona\\DemoBundle\\Tests\\": "tests"
+            "Symfona\\Bundle\\DemoBundle\\Tests\\": "tests"
         }
     },
     "config": {

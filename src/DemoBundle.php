@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Symfona\DemoBundle;
+namespace Symfona\Bundle\DemoBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
