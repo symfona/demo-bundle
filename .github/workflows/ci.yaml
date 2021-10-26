@@ -9,8 +9,13 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        strategy: { matrix: { php-version: ['8.0'] } }
+        strategy: { matrix: { php-version: ['8.1'] } }
         steps:
+            -   name: Install PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-version }}
+
             -   uses: actions/checkout@v2
 
             -   name: Validate composer.json and composer.lock
@@ -30,8 +35,13 @@ jobs:
     phpstan:
         needs: build
         runs-on: ubuntu-latest
-        strategy: { matrix: { os: [ubuntu-latest], php-version: ['8.0'] } }
+        strategy: { matrix: { os: [ubuntu-latest], php-version: ['8.1'] } }
         steps:
+            -   name: Install PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-version }}
+
             -   uses: actions/checkout@v2
 
             -   name: Cache composer packages
@@ -47,9 +57,9 @@ jobs:
     phpunit:
         needs: build
         runs-on: ubuntu-latest
-        strategy: { matrix: { php-version: ['8.0'] } }
+        strategy: { matrix: { php-version: ['8.1'] } }
         steps:
-            -   name: Setup PHP with Xdebug
+            -   name: Install PHP
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ matrix.php-version }}
