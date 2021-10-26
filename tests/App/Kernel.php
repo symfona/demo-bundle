@@ -4,6 +4,8 @@ namespace Symfona\DemoBundle\Tests\App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 final class Kernel extends \Symfony\Component\HttpKernel\Kernel
@@ -18,11 +20,16 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->import('config/config.yaml');
+        $container->extension('framework', ['test' => true]);
     }
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import('config/routes.yaml');
+        $routes->add('index', '/')->controller(__CLASS__);
+    }
+
+    public function __invoke(Request $request): JsonResponse
+    {
+        return new JsonResponse($request->getContent(), JsonResponse::HTTP_OK, [], true);
     }
 }
