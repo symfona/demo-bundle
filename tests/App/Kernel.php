@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 final class Kernel extends \Symfony\Component\HttpKernel\Kernel
@@ -30,6 +31,6 @@ final class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     public function __invoke(Request $request): JsonResponse
     {
-        return new JsonResponse($request->getContent(), JsonResponse::HTTP_OK, [], true);
+        return new JsonResponse($request->getContent(), Response::HTTP_OK, [], true);
     }
 }
